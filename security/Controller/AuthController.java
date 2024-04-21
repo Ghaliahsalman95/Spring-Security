@@ -30,10 +30,17 @@ public ResponseEntity logout(){
     return ResponseEntity.status(HttpStatus.OK).body(new APIResponse("Log out successfully"));
 
 }
-@GetMapping("/get-all/{admin}")
-public  ResponseEntity getAll(@PathVariable String admin){
-    return ResponseEntity.status(200).body(authoService.getAll(admin));
-}///delete/{admin}/{username}   /get-all/{admin}
+//@GetMapping("/get-all/{admin}")
+//public  ResponseEntity getAll(@PathVariable String admin){
+//    return ResponseEntity.status(200).body(authoService.getAll(admin));
+//}
+
+    @GetMapping("/get-all")
+public  ResponseEntity getAll(){
+    return ResponseEntity.status(200).body(authoService.getAll());
+}
+
+///delete/{admin}/{username}   /get-all/{admin}
 @DeleteMapping("/delete/{admin}/{username}")
 public ResponseEntity delete(@PathVariable String admin, @PathVariable String username){
     authoService.delete(admin,username);

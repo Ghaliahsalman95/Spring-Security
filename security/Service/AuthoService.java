@@ -24,20 +24,24 @@ public class AuthoService {
 
     }
 
+public List<User> getAll(){
+        if (authRepository.findAll().isEmpty())
+            throw  new APIException("empty list");
+        else return authRepository.findAll();
+}
 
-
-    public List<User> getAll(String usernameAdmin){
-        User admin=authRepository.findUserByUsername(usernameAdmin);
-        if (admin==null){throw  new APIException("Wrong request");
-        }
-
-        if (admin.getRole().equalsIgnoreCase("ADMIN")) {
-            return authRepository.findAll();
-        }
-        else {
-            throw  new APIException("GET ALL NOT ALLOW FOR YOU");
-        }
-    }
+//    public List<User> getAll(String usernameAdmin){
+//        User admin=authRepository.findUserByUsername(usernameAdmin);
+//        if (admin==null){throw  new APIException("Wrong request");
+//        }
+//
+//        if (admin.getRole().equalsIgnoreCase("ADMIN")) {
+//            return authRepository.findAll();
+//        }
+//        else {
+//            throw  new APIException("GET ALL NOT ALLOW FOR YOU");
+//        }
+//    }
 
 public void delete(String usernameAdmin,String username){
         User admin=authRepository.findUserByUsername(usernameAdmin);

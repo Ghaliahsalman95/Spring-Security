@@ -49,7 +49,7 @@ private final MyUserDetailsService myUserDetialsService;
             .and()
             .authorizeRequests()
             .requestMatchers("/api/v1/auth/register").permitAll()
-            .requestMatchers("/api/v1/auth/delete/**", "/get-all/**").hasAuthority("ADMIN")
+            .requestMatchers("/api/v1/auth/delete/**").hasAuthority("ADMIN").requestMatchers("/get-all").hasAuthority("ADMIN")
             .anyRequest().authenticated()
             .and()
             .logout()
